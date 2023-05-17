@@ -17,3 +17,7 @@ using namespace std;
     void Ninja::move(Character* enemy){
       this->loaction_.moveTowards(this->loaction_,enemy->loaction_,this->speed);
     }
+
+    void Ninja::attackEnemy(Character* enemy){
+      this->slash(enemy);
+    }

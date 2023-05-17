@@ -30,3 +30,6 @@ namespace ariel{}
     ostream& operator<<(ostream& output,const Cowboy& other){
         return output << "nothing";
       }
+    void Cowboy::attackEnemy(Character* enemy){
+      this->shoot(enemy);
+    }

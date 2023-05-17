@@ -14,6 +14,7 @@ class Cowboy : public Character{
     Cowboy(string name, Point point);
     string print() const override;
     friend std::ostream& operator<<(std::ostream& ostreamm, const Cowboy& other);
+    void attackEnemy(Character* enemy) override;
 
 };
 #endif

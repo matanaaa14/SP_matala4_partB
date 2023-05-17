@@ -19,9 +19,11 @@ class Character{
     Character(string name, Point point);
     friend std::ostream& operator<<(std::ostream& ostreamm, const Character& other);
     virtual ~Character();
+    Character();
     Character(const Character& other);
     Character(Character&& other) noexcept;
     Character& operator=(const Character& other);
     Character& operator=(Character&& other) noexcept;
+    virtual void attackEnemy(Character* enemy);
 };
 #endif

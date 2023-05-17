@@ -14,6 +14,6 @@ class Ninja : public Character{
     void slash(Character* enemy);
     Ninja(string name, Point point);
     string print() const override;
-
+    void attackEnemy(Character* enemy) override;
 };
 #endif

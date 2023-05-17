@@ -4,8 +4,8 @@ using namespace std;
 namespace ariel{}
     bool Character::isAlive()const{
       if(this->life > 0)
-        return false;
-      return true;
+        return true;
+      return false;
     }
     double Character::distance(Character* other)const{return other->loaction_.distance(this->loaction_);}
     void Character::hit(int num){
@@ -24,6 +24,7 @@ namespace ariel{}
       other.loaction_.y = 0;
     }
     Character::~Character(){}
+    void Character::attackEnemy(Character* enemy){}
     Character& Character::operator=(const Character& other){
       this->name_ = other.name_;
       this->loaction_ = other.loaction_;
@@ -32,4 +33,7 @@ namespace ariel{}
     }
     Character& Character::operator=(Character&& other) noexcept {
       return *this;
+    }
+    Character::Character() : name_("nothing"), loaction_(Point(0,0)){
+      cout << "defult con" << endl;
     }

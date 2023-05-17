@@ -8,7 +8,6 @@
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "array"
-
 using namespace std;
 //#define  arraySize 10
 constexpr int arraySize = 10;
@@ -27,5 +26,7 @@ class Team{
     Team(Team&& other) noexcept;
     Team& operator=(const Team& other);
     Team& operator=(Team&& other) noexcept;
+    unsigned long whoToAttack(Team* enemy);
+    unsigned long newLeader(Team* team);
 };
 #endif
