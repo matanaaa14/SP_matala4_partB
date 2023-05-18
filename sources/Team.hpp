@@ -8,13 +8,14 @@
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "array"
+#include "vector"
 using namespace std;
 //#define  arraySize 10
 constexpr int arraySize = 10;
 namespace ariel{}
 class Team{
     public:
-    std::array<Character*, arraySize> arr;
+    vector<Character*> arr;
     Character* leader_;
     void add(Character* fighter);
     void attack(Team* enemy);

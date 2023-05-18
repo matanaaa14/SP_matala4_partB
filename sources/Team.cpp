@@ -14,36 +14,48 @@ namespace ariel{}
       }
     }
     void Team::attack(Team* enemy){
-
       unsigned long index = 0;
-      while(index < 10){
+      while(index < this->arr.size()){
         if(!enemy->leader_->isAlive()){
         if(this->newLeader(enemy) == 11)
           return;
       }
+
       //there is alive leader old or new
         unsigned long j = this->whoToAttack(enemy);
         if(j == 11)
           return;
+
       //there is a member to attack
-        while( index < 10 && enemy->arr[j]->isAlive()){
-          Character* Character = this->arr[index];
-          if(typeid(Character) == typeid(Cowboy)) 
-            this->arr[index]->attackEnemy(enemy->arr[j]);
+        bool flag = false;
+        while( index < this->arr.size() && enemy->arr[j]->isAlive()){
+          if(this->arr[index] != nullptr ){
+            cout << "index is: " << index << endl;
+          if(Cowboy* cowboy = dynamic_cast<Cowboy*>(this->arr[index]) ){
+          flag = true;                    
+             cout << "befor cowboy" << enemy->arr[j]->life << endl;
+            cowboy->shoot(enemy->arr[j]);
+             cout << "after" << enemy->arr[j]->life << endl;
+          
+          }}
           index++;
         }
-        while( index < 10 && enemy->arr[j]->isAlive()){
-          Character* Character = this->arr[index];
-          if(typeid(Character) == typeid(Ninja)) 
-            this->arr[index]->attackEnemy(enemy->arr[j]);
+        while(index < this->arr.size() && enemy->arr[j]->isAlive()){
+          if(this->arr[index] != nullptr ){
+          if(Ninja* ninja = dynamic_cast<Ninja*>(this->arr[index]) ){         
+             cout << "befor ninja" << enemy->arr[j]->life << endl;
+              ninja->slash(enemy->arr[j]);
+             cout << "after" << enemy->arr[j]->life << endl;
+          }
+          }  
           index++;
-        }
+        
       }
-    }
+    }}
     unsigned long Team::newLeader(Team* team){
       double minDis = 1000000;
       Character* newLeader;
-      for(unsigned long i = 0; i < this->arr.size(); i++){
+      for(unsigned long i = 0; i < team->arr.size(); i++){
         if(team->arr[i] != nullptr && team->arr[i] != leader_){
           Character* Character = team->arr[i];
           if(typeid(Character) == typeid(Cowboy))
@@ -53,7 +65,7 @@ namespace ariel{}
             }
           }
         }
-      for(unsigned long i = 0; i < this->arr.size(); i++){
+      for(unsigned long i = 0; i < team->arr.size(); i++){
         if(team->arr[i] != nullptr && team->arr[i] != leader_){
           Character* Character = team->arr[i];
           if(typeid(Character) == typeid(Ninja))
@@ -69,19 +81,40 @@ namespace ariel{}
       return 1;
     }
     unsigned long Team::whoToAttack(Team* enemy){
-      unsigned long j;
-      double minDis = 1000000;
-      for(unsigned long i = 0; i < this->arr.size(); i++){
-          Character* Character = enemy->arr[i];
-          if(typeid(Character) == typeid(Cowboy) && this->leader_->distance(enemy->arr[i]) < minDis)
-            j = i;  
-        }
-      for(unsigned long i = 0; i < this->arr.size(); i++){
-          Character* Character = enemy->arr[i];
-          if(enemy->arr[i]->isAlive() && typeid(Character) == typeid(Ninja) && this->leader_->distance(enemy->arr[i]) <minDis)
+
+      unsigned long j = 12;
+      double minDis = 10000;
+      bool flag = false;
+      for(unsigned long i = 0; i < enemy->arr.size(); i++){
+        flag = false;
+        if(enemy->arr[i] != nullptr){
+          Character* character = enemy->arr[i];
+          if(Cowboy* cowboy = dynamic_cast<Cowboy*>(enemy->arr[i]) ){
+          flag = true;
+          }
+          if(enemy->arr[i]->isAlive() == true && flag && this->leader_->distance(enemy->arr[i]) < minDis){
             j = i;
+            minDis = this->leader_->distance(enemy->arr[i]);  
+          }
         }
-      if(minDis > 10)
+        }
+
+      for(unsigned long i = 0; i < enemy->arr.size(); i++){
+        flag = false;
+        if(enemy->arr[i] != nullptr){
+          Character* Character = enemy->arr[i];
+          if(Ninja* cowboy = dynamic_cast<Ninja*>(enemy->arr[i]) ){
+          flag = true;
+          }
+          if(enemy->arr[i]->isAlive() && flag && this->leader_->distance(enemy->arr[i]) <minDis){
+            j = i;
+            minDis = this->leader_->distance(enemy->arr[i]);  
+          }
+            
+        }
+      }
+      cout << "who to attack return: " << minDis <<", " << j << endl;
+      if(minDis == 10000)
         return 11;
       return j;
     }
@@ -110,16 +143,17 @@ namespace ariel{}
           }
         }
     }
+    //construcotr
     Team::Team(Character* leader) : leader_(leader){
-      this->arr[0] = this->leader_;
-      //for(this.)
+      this->arr.push_back(this->leader_);
+      this->arr.resize(10);
     }
     Team::~Team(){
     for(unsigned long i = 0; i < this->arr.size() ; i++){
       if(this->arr[i] == NULL)
       if(this->arr[i] == nullptr)
       if(this->arr[i] != NULL)
-        delete this->arr.at(i);
+        delete this->arr[i];
     }
     cout << "good" <<endl;
     }

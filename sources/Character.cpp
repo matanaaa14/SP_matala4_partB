@@ -3,8 +3,8 @@
 using namespace std;
 namespace ariel{}
     bool Character::isAlive()const{
-      if(this->life > 0)
-        return true;
+      if(this->life > 0){
+        return true;}
       return false;
     }
     double Character::distance(Character* other)const{return other->loaction_.distance(this->loaction_);}
