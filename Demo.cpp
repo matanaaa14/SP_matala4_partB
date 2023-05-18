@@ -29,7 +29,6 @@ int main() {
     sushi->slash(tom);
 
     Team team_A(tom); 
-    cout << "check1" << endl;
 
     team_A.add(new YoungNinja("Yogi", Point(64,57)));
     // Team b(tom); should throw tom is already in team a
@@ -50,13 +49,7 @@ int main() {
      if (team_A.stillAlive() > 0) cout << "winner is team_A" << endl;
      else cout << "winner is team_B" << endl;
 
-    cout << "my check" << endl;
-    unsigned long i = 0;
-    for(; i < 10; i++){
-      cout << "i is: " << i << endl;
-      if(team_B.arr[i] != nullptr)
-        cout << team_B.arr[i]->name_ << endl;
-    }
+
     cout << "end" << endl;
 
      return 0; // no memory issues. Team should free the memory of its members. both a and b teams are on the stack. 

@@ -10,6 +10,7 @@ class Character{
     Point loaction_;
     string name_;
     int life;
+    bool inTeam;
     bool isAlive()const;
     double distance(Character* other)const;
     void hit(int num);

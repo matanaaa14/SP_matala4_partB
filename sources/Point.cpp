@@ -11,6 +11,9 @@ namespace ariel{}
     }
     void Point::print(){cout << "( " << this->x << ", " << this->y << ")" << endl;}
     Point Point::moveTowards(Point source, Point dest, double distance){
+        if(distance < 0){
+            __throw_invalid_argument("distance not good\n");
+        }
         double dis = source.distance(dest);
         if(dis < distance)
             return dest;
@@ -29,4 +32,8 @@ namespace ariel{}
         if(this->y != other.y)
             return false;
         return true;
+    }
+    void Point::set(Point other){
+        this->x = other.x;
+        this->y = other.y;
     }

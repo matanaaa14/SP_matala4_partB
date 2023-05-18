@@ -9,15 +9,17 @@ namespace ariel{}
     }
     double Character::distance(Character* other)const{return other->loaction_.distance(this->loaction_);}
     void Character::hit(int num){
+      if(num < 0)
+        __throw_invalid_argument("error: hit\n");
       this->life = this->life - num;
     }
     string Character::getName()const{return this->name_;}
     Point Character::getLocation()const{return this->loaction_;}
-    Character::Character(string name, Point point) : name_(name), loaction_(point){}
+    Character::Character(string name, Point point) : inTeam(false) ,name_(name), loaction_(point){}
     ostream& operator<<(ostream& output,const Character& other){
         return output << "nothing";
       }
-    Character::Character(const Character& other): name_(other.name_), loaction_(other.loaction_){}
+    Character::Character(const Character& other): inTeam(false), name_(other.name_), loaction_(other.loaction_){}
     Character::Character(Character&& other) noexcept : name_(other.name_), loaction_(other.loaction_){
       other.name_ = nullptr;
       other.loaction_.x = 0;

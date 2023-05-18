@@ -2,6 +2,6 @@
 #include <iostream>
 namespace ariel{}
     YoungNinja::YoungNinja(string name, Point point) : Ninja(name,point){
-        this->life = 120;
-        this->speed = 12;
+        this->life = 100;
+        this->speed = 14;
     }

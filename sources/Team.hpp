@@ -18,9 +18,9 @@ class Team{
     vector<Character*> arr;
     Character* leader_;
     void add(Character* fighter);
-    void attack(Team* enemy);
+    virtual void attack(Team* enemy);
     int stillAlive();
-    void print();
+    virtual void print();
     Team(Character* leader);
     ~Team();
     Team(const Team& other);
@@ -28,6 +28,6 @@ class Team{
     Team& operator=(const Team& other);
     Team& operator=(Team&& other) noexcept;
     unsigned long whoToAttack(Team* enemy);
-    unsigned long newLeader(Team* team);
+    unsigned long newLeader();
 };
 #endif

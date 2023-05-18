@@ -3,11 +3,18 @@
 #include <iostream>
 namespace ariel{}
     void Cowboy::shoot(Character* enemy){
-      if(!enemy->isAlive() && this->isAlive()){
-        return;
-      }
+        if(!enemy->isAlive())
+          __throw_runtime_error("cannot attack dead character\n");
+        if(!this->isAlive())
+          __throw_runtime_error("dead caracter can't attack\n");
+        if(this == enemy)
+          __throw_runtime_error("friendly fire\n");
+      if(this->numOfBullets  < 1)
+        this->reload();
+      else{
       enemy->hit(10);
       this->numOfBullets--;
+    }
     }
     bool Cowboy::hasboolets(){
       if(this->numOfBullets > 0)
@@ -16,6 +23,8 @@ namespace ariel{}
     
     }
     void Cowboy::reload(){
+      if(!this->isAlive())
+        __throw_runtime_error("dead cowboy can't reload\n");
       this->numOfBullets = 6;
     }
     string Cowboy::print() const{
