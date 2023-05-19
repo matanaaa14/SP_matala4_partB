@@ -15,7 +15,7 @@ using namespace std;
 namespace ariel{}
 class Team2 : public Team{
     public:
-    void attack(Team* enemy) override;
+    //void attack(Team* enemy) override;
     void print() override;
     Team2(Character* leader);
 

@@ -23,7 +23,11 @@ using namespace std;
     void Ninja::move(Character* enemy){
      // cout << "in move function" <<endl;
    //   cout <<"name: " << this->name_ << " speed: " << this->speed << endl;
-       this->loaction_.set(this->loaction_.moveTowards(this->loaction_,enemy->loaction_,this->speed));
+  //    cout << "befor set loaction : "  << endl;
+     // this->loaction_.print();
+      this->loaction_.set(this->loaction_.moveTowards(this->loaction_,enemy->loaction_,this->speed));
+    //  cout << "after set loaction : "  << endl;
+     // this->loaction_.print();
     }
 
     void Ninja::attackEnemy(Character* enemy){

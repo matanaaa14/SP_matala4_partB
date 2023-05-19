@@ -3,6 +3,7 @@
 #include <iostream>
 namespace ariel{}
     void Cowboy::shoot(Character* enemy){
+      //cout<<"shoot" <<endl;
         if(!enemy->isAlive())
           __throw_runtime_error("cannot attack dead character\n");
         if(!this->isAlive())

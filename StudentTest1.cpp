@@ -467,11 +467,11 @@ TEST_SUITE("Battle simulations") {
 
         CHECK_EQ(team2.stillAlive(), 7);
 
-        multi_attack(2, team, team2);/*/
+        multi_attack(2, team, team2);
         CHECK_FALSE(young_ninja->isAlive()); // Young ninja should be dead
         CHECK((trained_ninja->isAlive() && old_ninja->isAlive() &&
                young_ninja2->isAlive())); // Everyone else should still be alive
-            
+
         team.attack(&team2);
         CHECK((!trained_ninja->isAlive() && old_ninja->isAlive() &&
                young_ninja2->isAlive())); // No one should die in the attack
@@ -489,7 +489,7 @@ TEST_SUITE("Battle simulations") {
                 &team2)); // The entire enemy team will be dead before every cowboy shoots, the attack should stop and not throw an exception
         CHECK_FALSE(young_ninja2->isAlive()); // Young ninja should be dead
         CHECK_THROWS_AS(team.attack(&team2), std::runtime_error); // Attacking a dead team should throw an exception
-   /*/ }
+    }
 
     /*
      * In this test only cowboys are used because they are stationary. This allows us to better keep track of everyone's position to better test for captains assignment.
@@ -520,7 +520,6 @@ TEST_SUITE("Battle simulations") {
         // The captain of team2 is the closest enemy to the captain of team1, and therefore should be dead.
         CHECK((!team2_c2->isAlive() && team2_c1->isAlive() && team2_c3->isAlive() && team2_c4->isAlive()));
 
-        cout << "test" << endl;
         // At this point, the captain should be team2_c3; hence, the next enemy to be attacked by team2 should team_c3.
         multi_attack(6, team2, team1);
         CHECK((!team_c3->isAlive() && team_c1->isAlive() && team_c2->isAlive()));

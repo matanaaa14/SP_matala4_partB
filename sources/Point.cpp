@@ -15,7 +15,7 @@ namespace ariel{}
             __throw_invalid_argument("distance not good\n");
         }
         double dis = source.distance(dest);
-        if(dis < distance)
+        if(dis <= distance)
             return dest;
         double a = dest.x - source.x;
         double b = dest.y - source.y;

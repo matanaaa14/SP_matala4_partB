@@ -11,7 +11,10 @@ namespace ariel{}
     void Character::hit(int num){
       if(num < 0)
         __throw_invalid_argument("error: hit\n");
+
       this->life = this->life - num;
+     // cout << "after hit" << this->life << endl;
+
     }
     string Character::getName()const{return this->name_;}
     Point Character::getLocation()const{return this->loaction_;}
