@@ -38,7 +38,6 @@ int main() {
     cout << "num of live members: " << team_A.stillAlive() << endl;
     
      while(team_A.stillAlive() > 0 && team_B.stillAlive() > 0){
-      cout << "while" << endl;
 
         team_A.attack(&team_B);
         team_B.attack(&team_A);

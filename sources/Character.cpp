@@ -13,7 +13,6 @@ namespace ariel{}
         __throw_invalid_argument("error: hit\n");
 
       this->life = this->life - num;
-     // cout << "after hit" << this->life << endl;
 
     }
     string Character::getName()const{return this->name_;}
@@ -40,5 +39,4 @@ namespace ariel{}
       return *this;
     }
     Character::Character() : name_("nothing"), loaction_(Point(0,0)){
-      cout << "defult con" << endl;
     }

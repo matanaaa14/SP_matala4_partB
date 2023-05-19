@@ -22,7 +22,7 @@ class Team{
     int stillAlive();
     virtual void print();
     Team(Character* leader);
-    ~Team();
+    virtual ~Team();
     Team(const Team& other);
     Team(Team&& other) noexcept;
     Team& operator=(const Team& other);
